@@ -1,4 +1,7 @@
+export const dynamic = "force-dynamic";
+
 import connectDB from "@/lib/mongodb";
+
 import Order from "@/models/Order";
 import Product from "@/models/Product";
 import { formatPrice } from "@/lib/utils";
