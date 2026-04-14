@@ -32,9 +32,9 @@ export default async function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center bg-linear-to-br from-gray-900 via-gray-800 to-black overflow-hidden py-20">
+      <section className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-900 via-gray-800 to-black overflow-hidden py-20">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-linear-to-r from-black via-black/70 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent z-10" />
           <Image
             src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2012&auto=format&fit=crop"
             alt="Collection de chaussures de luxe"
@@ -50,18 +50,18 @@ export default async function Home() {
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-[1.1] mb-8 tracking-tight">
               L'Élégance à{" "}
-              <span className="bg-linear-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">
                 Chaque Pas
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-200 mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Tchokos SARL est né d’une vision simple : offrir du style au Cameroun. <span className="bg-linear-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent uppercase font-bold">« C’est difficile mais c’est possible »</span> est devenu la force qui a transformé cette idée en réalité.
+              Tchokos SARL est né d’une vision simple : offrir du style au Cameroun. <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent uppercase font-bold">« C’est difficile mais c’est possible »</span> est devenu la force qui a transformé cette idée en réalité.
             </p>
 
             <div className="flex flex-wrap gap-5 justify-center lg:justify-start">
               <Link href="/products">
-                <Button size="lg" className="text-base px-8 py-4 bg-linear-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 border-0 shadow-xl hover:shadow-2xl transition-all duration-300 group">
+                <Button size="lg" className="text-base px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 border-0 shadow-xl hover:shadow-2xl transition-all duration-300 group">
                   Explorer la collection
                   <ArrowRight className="ml-2 w-5 h-5 inline-block group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -126,7 +126,7 @@ export default async function Home() {
                 className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
               >
                 <div className="flex items-start gap-5">
-                  <div className="w-16 h-16 rounded-xl bg-linear-to-br from-yellow-400 to-yellow-500 flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-500 flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
                     <feature.icon className="h-7 w-7 text-white" />
                   </div>
                   <div className="flex-1">
@@ -141,7 +141,7 @@ export default async function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-24 bg-linear-to-b from-gray-50 to-white">
+      <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
         <div className="container-app px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-yellow-100 rounded-full px-4 py-1.5 mb-5">
@@ -149,7 +149,7 @@ export default async function Home() {
               <span className="text-xs font-bold text-yellow-700 uppercase tracking-wider">Top ventes</span>
             </div>
             <h2 className="text-4xl sm:text-5xl font-black text-gray-900 tracking-tight mb-4">
-              Produits <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-500 to-yellow-600">Vedettes</span>
+              Produits <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">Vedettes</span>
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Les incontournables de la saison
@@ -181,7 +181,7 @@ export default async function Home() {
         <div className="container-app px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-black text-gray-900 tracking-tight mb-4">
-              Nos <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-500 to-yellow-600">Collections</span>
+              Nos <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">Collections</span>
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Des styles uniques pour chaque occasion, pensés pour révéler votre personnalité
@@ -227,7 +227,7 @@ export default async function Home() {
                   className="object-cover object-center group-hover:scale-110 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
                 />
-                <div className={`absolute inset-0 bg-linear-to-t ${category.color} to-transparent`} />
+                <div className={`absolute inset-0 bg-gradient-to-t ${category.color} to-transparent`} />
 
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -245,7 +245,7 @@ export default async function Home() {
           </div>
 
           {/* Bannière promotionnelle */}
-          <div className="mt-20 bg-linear-to-r from-yellow-500 via-yellow-600 to-yellow-700 rounded-2xl p-10 text-center text-white shadow-xl">
+          <div className="mt-20 bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 rounded-2xl p-10 text-center text-white shadow-xl">
             <h3 className="text-3xl sm:text-4xl font-bold mb-3">Livraison Offerte</h3>
             <p className="text-yellow-100 text-lg mb-6">Pour toute commande supérieure à 50 000 FCFA</p>
             <Link href="/products">
