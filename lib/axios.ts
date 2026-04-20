@@ -1,7 +1,14 @@
 import axios from "axios";
 
+const configuredBaseUrl = process.env.NEXT_PUBLIC_APP_URL?.trim();
+const isBrowser = typeof window !== "undefined";
+const isLocalhostBaseUrl = configuredBaseUrl?.includes("localhost");
+const shouldUseConfiguredBaseUrl =
+  !!configuredBaseUrl && (!isBrowser || !isLocalhostBaseUrl);
+
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+  // In browser, prefer same-origin calls unless a non-localhost URL is configured.
+  baseURL: shouldUseConfiguredBaseUrl ? configuredBaseUrl : undefined,
   headers: {
     "Content-Type": "application/json",
   },
