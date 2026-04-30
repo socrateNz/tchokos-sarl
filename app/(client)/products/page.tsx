@@ -1,8 +1,7 @@
 import { Suspense } from "react";
 import ProductGrid from "@/components/products/ProductGrid";
 import { ProductGridSkeleton } from "@/components/ui/Skeleton";
-import connectDB from "@/lib/mongodb";
-import Product from "@/models/Product";
+import { getProducts, getStockEntries } from "@/lib/data";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
@@ -11,33 +10,7 @@ interface ProductsPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-async function getProducts(searchParams: { [key: string]: string | string[] | undefined }) {
-  await connectDB();
-  
-  const category = searchParams.category as string;
-  const minPrice = searchParams.minPrice as string;
-  const maxPrice = searchParams.maxPrice as string;
-  
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const filter: any = {};
-  if (category && category !== "all") filter.category = category;
-  if (minPrice || maxPrice) {
-    filter.price = {};
-    if (minPrice) filter.price.$gte = parseFloat(minPrice);
-    if (maxPrice) filter.price.$lte = parseFloat(maxPrice);
-  }
 
-  const products = await Product.find(filter)
-    .sort({ createdAt: -1 })
-    .lean();
-    
-  return products.map(p => ({
-    ...p,
-    _id: p._id.toString(),
-    createdAt: (p.createdAt as Date).toISOString(),
-    updatedAt: (p.updatedAt as Date)?.toISOString(),
-  })) as unknown as import("@/types").Product[];
-}
 
 const CATEGORIES = [
   { id: "all", label: "Toutes les catégories" },
@@ -52,6 +25,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   const params = await searchParams;
   const currentCategory = (params.category as string) || "all";
   const products = await getProducts(params);
+  const stockEntries = await getStockEntries();
 
   return (
     <div className="bg-[#FAFAFA] min-h-[calc(100vh-80px)]">
@@ -100,7 +74,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           </div>
           
           <Suspense fallback={<ProductGridSkeleton count={8} />}>
-            <ProductGrid products={products} />
+            <ProductGrid products={products} stockEntries={stockEntries} />
           </Suspense>
         </main>
       </div>

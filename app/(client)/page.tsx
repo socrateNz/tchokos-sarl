@@ -1,33 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import ProductGrid from "@/components/products/ProductGrid";
-import connectDB from "@/lib/mongodb";
-import Product from "@/models/Product";
 import Button from "@/components/ui/Button";
-import { ArrowRight, Truck, ShieldCheck, Headphones, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Truck, ShieldCheck, Headphones, Star } from "lucide-react";
+import { getFeaturedProducts, getStockEntries } from "@/lib/data";
 
-async function getFeaturedProducts() {
-  try {
-    await connectDB();
-    const products = await Product.find({ isFeatured: true })
-      .sort({ createdAt: -1 })
-      .limit(8)
-      .lean();
 
-    return products.map(p => ({
-      ...p,
-      _id: p._id.toString(),
-      createdAt: (p.createdAt as Date).toISOString(),
-      updatedAt: (p.updatedAt as Date)?.toISOString(),
-    })) as unknown as import("@/types").Product[];
-  } catch (error) {
-    console.error("Error fetching featured products", error);
-    return [];
-  }
-}
 
 export default async function Home() {
   const featuredProducts = await getFeaturedProducts();
+
+  const stockEntries = await getStockEntries();
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -56,7 +39,7 @@ export default async function Home() {
             </h1>
 
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-200 mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Tchokos SARL est né d’une vision simple : offrir du style au Cameroun. <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent uppercase font-bold">« C’est difficile mais c’est possible »</span> est devenu la force qui a transformé cette idée en réalité.
+              Tchokos SARL est né d’une vision simple : Montrer la force du Cameroun. <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent uppercase font-bold">« C’est difficile mais c’est possible »</span> est devenu la force qui a transformé cette idée en réalité.
             </p>
 
             <div className="flex flex-wrap gap-5 justify-center lg:justify-start">
@@ -158,7 +141,7 @@ export default async function Home() {
 
           {featuredProducts.length > 0 ? (
             <>
-              <ProductGrid products={featuredProducts} />
+              <ProductGrid products={featuredProducts} stockEntries={stockEntries} />
               <div className="mt-12 text-center">
                 <Link href="/products">
                   <Button variant="outline" size="lg" className="px-8 py-3">

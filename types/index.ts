@@ -1,3 +1,14 @@
+export interface StockEntry {
+  _id: string;
+  productId: string;
+  size: string;
+  quantity: number;
+  price: number;
+  __v?: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface Product {
   _id: string;
   name: string;
@@ -5,7 +16,7 @@ export interface Product {
   images: string[];
   sizes: string[];
 
-  stockEntries?: { size: string; quantity: number; price: number }[];
+  stockEntries?: StockEntry[];
 
   category: "homme" | "femme" | "enfant" | "accessoires";
 
